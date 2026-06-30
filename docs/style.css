@@ -1,0 +1,255 @@
+:root {
+  --ink: #16191d;
+  --muted: #626b75;
+  --line: #d9dee5;
+  --paper: #f7f8fa;
+  --accent: #1d6f67;
+  --accent-soft: #dcefeb;
+  --text-soft: #eef1f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: white;
+  line-height: 1.6;
+}
+
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto 64px;
+}
+
+.hero {
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-inner {
+  width: 100%;
+  padding: 72px 0 48px;
+}
+
+.venue {
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+h1 {
+  font-size: clamp(44px, 7vw, 86px);
+  line-height: 0.98;
+  margin: 0;
+  max-width: 980px;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 500;
+  color: var(--muted);
+  margin: 20px 0 0;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.authors {
+  color: var(--muted);
+  font-size: 18px;
+  margin: 22px 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.links a {
+  color: white;
+  background: var(--ink);
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 650;
+}
+
+section {
+  padding: 46px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+}
+
+.summary p,
+article p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stats span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--paper);
+}
+
+.stats b {
+  display: block;
+  font-size: 28px;
+  color: var(--accent);
+}
+
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr 28px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.pipeline.lower {
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  width: 78%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.node {
+  min-height: 112px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 750;
+}
+
+.node small {
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.node.accent {
+  background: var(--accent-soft);
+  border-color: #9dcfc6;
+}
+
+.node.text {
+  background: var(--text-soft);
+}
+
+.arrow {
+  height: 2px;
+  background: var(--accent);
+  position: relative;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -5px;
+  border-left: 8px solid var(--accent);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--paper);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background: var(--paper);
+}
+
+pre {
+  margin: 0;
+  padding: 18px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #111418;
+  color: #edf2f7;
+}
+
+@media (max-width: 820px) {
+  main {
+    width: min(100% - 22px, 1120px);
+  }
+
+  .summary,
+  .grid,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline,
+  .pipeline.lower {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .arrow {
+    width: 2px;
+    height: 28px;
+    margin: 0 auto;
+  }
+
+  .arrow::after {
+    right: -5px;
+    top: auto;
+    bottom: -1px;
+    border-top: 8px solid var(--accent);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 0;
+  }
+}

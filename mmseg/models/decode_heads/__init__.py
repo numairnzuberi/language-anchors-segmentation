@@ -15,6 +15,7 @@ from .identity_head import IdentityHead
 from .mask2former_head import Mask2FormerHead
 from .maskformer_head import MaskFormerHead
 from .tqdm_head import tqdmHead
+from .hvlformer_head import HVLFormerHead
 
 __all__ = [
     'FCNHead',
@@ -33,5 +34,6 @@ __all__ = [
     'IdentityHead',
     'MaskFormerHead',
     'Mask2FormerHead',
-    'tqdmHead'
+    'tqdmHead',
+    'HVLFormerHead'
 ]

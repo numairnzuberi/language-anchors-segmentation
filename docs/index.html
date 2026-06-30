@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Language Anchors for Semi-Supervised Image Segmentation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="venue">Paper Project Page</p>
+        <h1>Segmenting Visuals With Querying Words</h1>
+        <h2>Language Anchors For Semi-Supervised Image Segmentation</h2>
+        <p class="authors">Numair Nadeem et al.</p>
+        <div class="links">
+          <a href="#">Paper</a>
+          <a href="https://github.com/numairnzuberi/language-anchors-segmentation">Code</a>
+          <a href="#">Checkpoints</a>
+          <a href="#bibtex">BibTeX</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div>
+        <h3>HVLFormer</h3>
+        <p>
+          HVLFormer is a vision-language segmentation framework that anchors
+          mask prediction with dataset-aware textual queries. It extends TQDM
+          with hierarchical textual query generation, pixel-text refinement,
+          and cross-view modal consistency for semi-supervised learning.
+        </p>
+      </div>
+      <div class="stats">
+        <span><b>3</b> textual queries per class</span>
+        <span><b>6</b> pixel-decoder layers</span>
+        <span><b>9</b> masked-attention layers</span>
+        <span><b>8 + 8</b> labeled and unlabeled images</span>
+      </div>
+    </section>
+
+    <section>
+      <h3>Method</h3>
+      <div class="pipeline" aria-label="HVLFormer method diagram">
+        <div class="node">Image Encoder<br><small>CLIP / SigLIP2 / EVA02-CLIP</small></div>
+        <div class="arrow"></div>
+        <div class="node">Pixel Decoder<br><small>DN-DETR, 6 layers</small></div>
+        <div class="arrow"></div>
+        <div class="node accent">PTRM<br><small>pixel-text refinement</small></div>
+        <div class="arrow"></div>
+        <div class="node">Mask Decoder<br><small>Mask2Former, 9 layers</small></div>
+      </div>
+      <div class="pipeline lower">
+        <div class="node text">Dataset-aware prompt<br><small>8 learnable tokens</small></div>
+        <div class="arrow"></div>
+        <div class="node accent">HTQG + SRE<br><small>coarse-to-fine language anchors</small></div>
+        <div class="arrow"></div>
+        <div class="node text">CMCR<br><small>original, weak, and strong views</small></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article>
+        <h3>Hierarchical Textual Query Generation</h3>
+        <p>
+          Dataset-specific prompts produce attribute-rich class descriptions.
+          Three MLP heads generate scale-aligned queries for coarse structure,
+          mid-level parts, and fine texture or boundary cues. Semantic
+          relevance estimation suppresses absent-class queries.
+        </p>
+      </article>
+      <article>
+        <h3>Pixel-Text Refinement</h3>
+        <p>
+          PTRM injects image context into textual queries and transfers
+          class-level semantics back into pixel features using spatial gates
+          over text-guided, pixel-guided, and fused attention maps.
+        </p>
+      </article>
+      <article>
+        <h3>Cross-View Modal Consistency</h3>
+        <p>
+          CMCR regularizes unlabeled examples across original, weakly augmented,
+          and strongly augmented views, aligning masks, class predictions, and
+          pixel-text correspondences at decoder stages.
+        </p>
+      </article>
+    </section>
+
+    <section>
+      <h3>Experiments</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Crop</th>
+            <th>Epochs</th>
+            <th>Metric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pascal VOC</td><td>512 x 512</td><td>80</td><td>mIoU</td></tr>
+          <tr><td>COCO</td><td>512 x 512</td><td>10</td><td>mIoU</td></tr>
+          <tr><td>ADE20K</td><td>512 x 512</td><td>40</td><td>mIoU</td></tr>
+          <tr><td>Cityscapes</td><td>801 x 801</td><td>240</td><td>mIoU</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="bibtex">
+      <h3>BibTeX</h3>
+      <pre><code>@misc{nadeem2026segmenting,
+  title={Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation},
+  author={Nadeem, Numair and others},
+  year={2026}
+}</code></pre>
+    </section>
+  </main>
+</body>
+</html>

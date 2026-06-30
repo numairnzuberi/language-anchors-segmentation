@@ -138,3 +138,4 @@ results/
 
 # html
 *.html
+!docs/index.html

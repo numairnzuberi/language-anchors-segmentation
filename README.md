@@ -1,91 +1,110 @@
-# [ECCV 2024] Textual Query-Driven Mask Transformer for Domain Generalized Segmentation
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/textual-query-driven-mask-transformer-for/domain-generalization-on-gta5-to-cityscapes)](https://paperswithcode.com/sota/domain-generalization-on-gta5-to-cityscapes?p=textual-query-driven-mask-transformer-for) <br />
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/textual-query-driven-mask-transformer-for/domain-generalization-on-gta-to-avg)](https://paperswithcode.com/sota/domain-generalization-on-gta-to-avg?p=textual-query-driven-mask-transformer-for) <br />
-### [**Textual Query-Driven Mask Transformer for Domain Generalized Segmentation**](https://arxiv.org/abs/2407.09033)
->[Byeonghyun Pak](https://byeonghyunpak.github.io/)\*, [Byeongju Woo](https://byeongjuwoo.github.io/)\*, [Sunghwan Kim](https://sunghwan.me/)\*, [Dae-hwan Kim](https://scholar.google.com/citations?hl=en&user=_5Scn8YAAAAJ), [Hoseong Kim](https://scholar.google.com/citations?hl=en&user=Zy7Sz5UAAAAJ)†\
->Agency for Defense Development\
->ECCV 2024
+# Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation
 
-#### [[`Project Page`](https://byeonghyunpak.github.io/tqdm/)] [[`Paper`](https://arxiv.org/abs/2407.09033)]
+### **Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation**
+> Numair Nadeem et al.\
+> Project status: code scaffold adapted from TQDM; paper, checkpoints, and final splits coming soon.
+
+#### [[`Project Page`](https://numairnzuberi.github.io/language-anchors-segmentation/)] [[`Paper`](#)] [[`Checkpoints`](#)]
+
+## Overview
+
+This repository implements **HVLFormer**, a vision-language segmentation
+framework for semi-supervised image segmentation. HVLFormer builds on the
+Textual Query-Driven Mask Transformer (TQDM) codebase and adds:
+
+- **HTQG**: Hierarchical Textual Query Generation with dataset-aware
+  learnable prompts and semantic relevance estimation.
+- **PTRM**: Pixel-Text Refinement Module for bidirectional spatial
+  conditioning between image features and textual queries.
+- **CMCR**: Cross-View and Modal Consistency Regularisation for unlabeled
+  images under weak and strong augmentations.
 
 ## Environment
+
 ### Requirements
-- The requirements can be installed with:
-  
-  ```bash
-  conda create -n tqdm python=3.9 numpy=1.26.4
-  conda activate tqdm
-  conda install pytorch==2.0.1 torchvision==0.15.2 pytorch-cuda=11.8 -c pytorch -c nvidia
-  pip install -r requirements.txt
-  pip install xformers==0.0.20
-  pip install mmcv-full==1.5.3 
-  ```
+
+```bash
+conda create -n hvlformer python=3.9 numpy=1.26.4
+conda activate hvlformer
+conda install pytorch==2.0.1 torchvision==0.15.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install -r requirements.txt
+pip install xformers==0.0.20
+pip install mmcv-full==1.5.3
+```
+
 ### Pre-trained VLM Models
-- Please download the pre-trained CLIP and EVA02-CLIP and save them in `./pretrained` folder.
 
-  | Model | Type | Link |
-  |-----|-----|:-----:|
-  | CLIP | `ViT-B-16.pt` |[official repo](https://github.com/openai/CLIP/blob/a1d071733d7111c9c014f024669f959182114e33/clip/clip.py#L30)|
-  | EVA02-CLIP | `EVA02_CLIP_L_336_psz14_s6B` |[official repo](https://github.com/baaivision/EVA/tree/master/EVA-CLIP#eva-02-clip-series)|
+Download the pre-trained vision-language models and save them in `./pretrained`.
 
-### Checkpoints
-- You can download **tqdm** model checkpoints:
+| Model | Type | Link |
+|-----|-----|:-----:|
+| CLIP | `ViT-B-16.pt` | [official repo](https://github.com/openai/CLIP) |
+| SigLIP2 | ViT family | [model family](https://huggingface.co/google) |
+| EVA02-CLIP | `EVA02_CLIP_L_336_psz14_s6B` | [official repo](https://github.com/baaivision/EVA/tree/master/EVA-CLIP#eva-02-clip-series) |
 
-  | Model | Pretrained | Trained on | Config | Link |
-  |-----|-----|-----|-----|:-----:|
-  | `tqdm-clip-vit-b-gta` | CLIP | GTA5 | [config](https://github.com/ByeongHyunPak/tqdm/blob/main/configs/tqdm/tqdm_clip_vit-l_1e-5_20k-g2c-512.py) |[download link](https://drive.google.com/file/d/1oKTIuPoXTJyOqqof1yqtb10m41nVkreM/view?usp=drive_link)|
-  | `tqdm-eva02-clip-vit-l-gta` | EVA02-CLIP | GTA5 | [config](https://github.com/ByeongHyunPak/tqdm/blob/main/configs/tqdm/tqdm_eva_vit-l_1e-5_20k-g2c-512.py) |[download link](https://drive.google.com/file/d/1niKdUcoeP9Gd4F2O0LikTHBg39xHO8j0/view?usp=drive_link)|
-  | `tqdm-eva02-clip-vit-l-city` | EVA02-CLIP | Cityscapes | [config](https://github.com/ByeongHyunPak/tqdm/blob/main/configs/tqdm/tqdm_eva_vit-l_1e-4_20k-c2b-512.py) |[download link](https://drive.google.com/file/d/1_FXNthSshuvGraEX-2JxQWsGvtpeG9A7/view?usp=drive_link)|
+## Checkpoints
+
+Checkpoints will be released after paper review.
+
+| Model | Pretrained | Training split | Config | Link |
+|-----|-----|-----|-----|:-----:|
+| `hvlformer-clip-vit-b-voc` | CLIP ViT-B/16 | VOC semi-supervised | [`config`](configs/hvlformer/hvlformer_clip_vit-b_voc_80e_512.py) | Coming soon |
+| `hvlformer-eva02-clip-vit-l` | EVA02-CLIP ViT-L/14 | VOC/COCO/ADE20K/Cityscapes | Coming soon | Coming soon |
+| `hvlformer-siglip2` | SigLIP2 | VOC/COCO/ADE20K/Cityscapes | Coming soon | Coming soon |
 
 ## Datasets
-- To set up datasets, please follow [the official **TLDR** repo](https://github.com/ssssshwan/TLDR/tree/main?tab=readme-ov-file#setup-datasets).
-- After downloading the datasets, edit the data folder root in [the dataset config files](https://github.com/ByeongHyunPak/tqdm/tree/main/configs/_base_/datasets) following your environment.
-  
-  ```python
-  src_dataset_dict = dict(..., data_root='[YOUR_DATA_FOLDER_ROOT]', ...)
-  tgt_dataset_dict = dict(..., data_root='[YOUR_DATA_FOLDER_ROOT]', ...)
-  ```
+
+We benchmark on Pascal VOC, COCO, ADE20K, and Cityscapes. Following SemiVL, each
+training iteration uses a mixed batch of eight labeled and eight unlabeled
+images. Inputs are cropped to `512 x 512`, except Cityscapes, where `801 x 801`
+is used.
+
+Before training, edit the dataset roots and semi-supervised splits in the config
+files under `configs/_base_/datasets` or add your dataset split file:
+
+```python
+data_root = '[YOUR_DATA_FOLDER_ROOT]'
+labeled_split = '[LABELED_SPLIT_FILE]'
+unlabeled_split = '[UNLABELED_SPLIT_FILE]'
+```
+
 ## Train
- ```
- bash dist_train.sh configs/[TRAIN_CONFIG] [NUM_GPUs]
+
+```bash
+bash dist_train.sh configs/hvlformer/hvlformer_clip_vit-b_voc_80e_512.py 2
 ```
-  - `[TRAIN_CONFIG]`: Train configuration file (e.g., `tqdm/tqdm_eve_vit-l_1e-5_20k-g2c-512.py`)
-  - `[NUM_GPUs]`: Number of GPUs used for training
+
+The paper setting uses AdamW, initial learning rate `1e-4`, polynomial decay
+with power `0.9`, and linear warm-up for `1.5k` iterations. Training schedules
+are 80, 10, 40, and 240 epochs for VOC, COCO, ADE20K, and Cityscapes.
+
 ## Test
-To enable multi-scale flip augmentation during testing, use the `--aug-test` option.
 
-**Note:** The experiment results in our main paper were obtained **without** multi-scale flip augmentation.
+```bash
+bash dist_test.sh configs/hvlformer/hvlformer_clip_vit-b_voc_80e_512.py \
+  work_dirs/hvlformer_clip_vit-b_voc_80e_512/epoch_last.pth \
+  2 --eval mIoU
+```
 
-```
-bash dist_test.sh configs/[TEST_CONFIG] work_dirs/[MODEL] [NUM_GPUs] --eval mIoU
-```
-  - `[TRAIN_CONFIG]`: Test configuration file (e.g., `tqdm/tqdm_eve_vit-l_1e-5_20k-g2b-512.py`)
-  - `[MODEL]`: Model checkpoint (e.g., `tqdm_eve_vit-l_1e-5_20k-g2c-512/epoch_last.pth`)
-  - `[NUM_GPUs]`: Number of GPUs used for testing
- 
 ## The Most Relevant Files
-- [configs/tqdm/*](https://github.com/ByeongHyunPak/tqdm/tree/main/configs/tqdm) - Config files for the final tqdm
-- [models/segmentors/*](https://github.com/ByeongHyunPak/tqdm/tree/main/models/segmentors) - Overall tqdm framework
-- [mmseg/models/utils/assigner.py](https://github.com/ByeongHyunPak/tqdm/blob/main/mmseg/models/utils/assigner.py#L168) - Implementation of fixed matching
-- [mmseg/models/decode_heads/tqdm_head.py](https://github.com/ByeongHyunPak/tqdm/blob/main/mmseg/models/decode_heads/tqdm_head.py) - Our textual object query-based segmentation head
-- [mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py](https://github.com/ByeongHyunPak/tqdm/blob/main/mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py) - Our pixel decoder with *text-to-pixel attention*
+
+- [`configs/hvlformer/*`](configs/hvlformer) - HVLFormer training configs.
+- [`mmseg/models/decode_heads/hvlformer_head.py`](mmseg/models/decode_heads/hvlformer_head.py) - HTQG, PTRM, and HVLFormer decode head.
+- [`mmseg/models/decode_heads/tqdm_head.py`](mmseg/models/decode_heads/tqdm_head.py) - Original TQDM textual query Mask2Former head.
+- [`mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py`](mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py) - DN-DETR-style text-aware pixel decoder inherited from TQDM.
+- [`models/segmentors/hvlformer_clip.py`](models/segmentors/hvlformer_clip.py) - CLIP-backed HVLFormer segmentor wrapper.
 
 ## Citation
-If you find our code helpful, please cite our paper:
+
+If you find this code helpful, please cite:
+
 ```bibtex
-@inproceedings{pak2024textual,
-  title={Textual Query-Driven Mask Transformer for Domain Generalized Segmentation},
-  author={Pak, Byeonghyun and Woo, Byeongju and Kim, Sunghwan and Kim, Dae-hwan and Kim, Hoseong},
-  booktitle={European Conference on Computer Vision},
-  pages={37--54},
-  year={2024},
-  organization={Springer}
+@misc{nadeem2026segmenting,
+  title={Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation},
+  author={Nadeem, Numair and others},
+  year={2026}
 }
 ```
 
-## Acknowledgements
-This project is based on the following open-source projects.
-We thank the authors for sharing their codes.
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation)
-- [DAFormer](https://github.com/lhoyer/DAFormer)
-- [TLDR](https://github.com/ssssshwan/TLDR)
+This project is based on the excellent
+[TQDM](https://github.com/ByeongHyunPak/tqdm) repository.
