@@ -43,22 +43,14 @@
 
     <section>
       <h3>Method</h3>
-      <div class="pipeline" aria-label="HVLFormer method diagram">
-        <div class="node">Image Encoder<br><small>CLIP / SigLIP2 / EVA02-CLIP</small></div>
-        <div class="arrow"></div>
-        <div class="node">Pixel Decoder<br><small>DN-DETR, 6 layers</small></div>
-        <div class="arrow"></div>
-        <div class="node accent">PTRM<br><small>pixel-text refinement</small></div>
-        <div class="arrow"></div>
-        <div class="node">Mask Decoder<br><small>Mask2Former, 9 layers</small></div>
-      </div>
-      <div class="pipeline lower">
-        <div class="node text">Dataset-aware prompt<br><small>8 learnable tokens</small></div>
-        <div class="arrow"></div>
-        <div class="node accent">HTQG + SRE<br><small>coarse-to-fine language anchors</small></div>
-        <div class="arrow"></div>
-        <div class="node text">CMCR<br><small>original, weak, and strong views</small></div>
-      </div>
+      <figure class="wide-figure">
+        <img src="assets/hvlformer-architecture.png" alt="HVLFormer architecture with hierarchical textual query generation, semantic relevance estimation, pixel-text refinement, transformer decoding, and consistency regularization.">
+        <figcaption>
+          HVLFormer generates dataset-aware hierarchical textual queries,
+          refines them with pixel features, and regularizes predictions across
+          augmented views.
+        </figcaption>
+      </figure>
     </section>
 
     <section class="grid">
@@ -87,6 +79,18 @@
           pixel-text correspondences at decoder stages.
         </p>
       </article>
+    </section>
+
+    <section>
+      <h3>Qualitative Results</h3>
+      <figure class="wide-figure">
+        <img src="assets/qualitative-results.png" alt="Qualitative segmentation comparison showing input image, ground truth, previous SOTA, and HVLFormer prediction.">
+        <figcaption>
+          HVLFormer improves class-consistent masks compared with the previous
+          SOTA, especially when language anchors separate visually similar
+          object regions.
+        </figcaption>
+      </figure>
     </section>
 
     <section>
