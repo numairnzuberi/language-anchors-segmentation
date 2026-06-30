@@ -4,7 +4,7 @@
 > Numair Nadeem et al.\
 > Project status: code scaffold adapted from TQDM; paper, checkpoints, and final splits coming soon.
 
-#### [[`Project Page`](https://numairnzuberi.github.io/HVLFormer/)] [[`Paper`](#)] [[`Checkpoints`](#)]
+#### [[`Project Page`](https://numnz.github.io/HVLFormer/)] [[`Paper`](#)] [[`Checkpoints`](#)]
 
 ## Overview
 
