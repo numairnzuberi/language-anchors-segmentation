@@ -1,7 +1,7 @@
 # HVLFormer
 
 ### **Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation**
-> Numair Nadeem et al.\
+> Numair Nadeem, Saeed Anwar, Muhammad Hamza Asad, Abdul Bais\
 > Project status: code scaffold adapted from TQDM; paper, checkpoints, and final splits coming soon.
 
 #### [[`Project Page`](https://numnz.github.io/HVLFormer/)] [[`Paper`](#)] [[`Checkpoints`](#)]
@@ -100,9 +100,10 @@ bash dist_test.sh configs/hvlformer/hvlformer_clip_vit-b_voc_80e_512.py \
 If you find this code helpful, please cite:
 
 ```bibtex
-@misc{nadeem2026segmenting,
+@inproceedings{nadeem2026segmenting,
   title={Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation},
-  author={Nadeem, Numair and others},
+  author={Nadeem, Numair and Anwar, Saeed and Asad, Muhammad Hamza and Bais, Abdul},
+  booktitle={European Conference on Computer Vision},
   year={2026}
 }
 ```
