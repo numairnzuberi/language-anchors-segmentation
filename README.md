@@ -1,10 +1,10 @@
-# Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation
+# HVLFormer
 
 ### **Segmenting Visuals With Querying Words: Language Anchors For Semi-Supervised Image Segmentation**
 > Numair Nadeem et al.\
 > Project status: code scaffold adapted from TQDM; paper, checkpoints, and final splits coming soon.
 
-#### [[`Project Page`](https://numairnzuberi.github.io/language-anchors-segmentation/)] [[`Paper`](#)] [[`Checkpoints`](#)]
+#### [[`Project Page`](https://numairnzuberi.github.io/HVLFormer/)] [[`Paper`](#)] [[`Checkpoints`](#)]
 
 ## Overview
 
