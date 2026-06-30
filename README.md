@@ -90,6 +90,7 @@ bash dist_test.sh configs/hvlformer/hvlformer_clip_vit-b_voc_80e_512.py \
 
 - [`configs/hvlformer/*`](configs/hvlformer) - HVLFormer training configs.
 - [`mmseg/models/decode_heads/hvlformer_head.py`](mmseg/models/decode_heads/hvlformer_head.py) - HTQG, PTRM, and HVLFormer decode head.
+- [`mmseg/models/losses/cmcr_loss.py`](mmseg/models/losses/cmcr_loss.py) - CMCR consistency loss for original, weak, and strong views.
 - [`mmseg/models/decode_heads/tqdm_head.py`](mmseg/models/decode_heads/tqdm_head.py) - Original TQDM textual query Mask2Former head.
 - [`mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py`](mmseg/models/plugins/tqdm_msdeformattn_pixel_decoder.py) - DN-DETR-style text-aware pixel decoder inherited from TQDM.
 - [`models/segmentors/hvlformer_clip.py`](models/segmentors/hvlformer_clip.py) - CLIP-backed HVLFormer segmentor wrapper.
